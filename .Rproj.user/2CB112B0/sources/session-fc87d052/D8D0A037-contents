@@ -10,9 +10,8 @@ diabetes <- read_xpt(here("data", "DIQ_L.xpt"))
 #2. `diabetes`: Doctor told you have diabetes (DIQ010)
 
 #### Data Cleaning and Processing ####
-#### Research Questions: 
-#### 1. relationship between diabetes v.s. education level
-#### 2. relationship between diabetes v.s. ratio of family income to poverty
+#### Research Question: 
+#### relationship between diabetes v.s. education and poverty
 # Merge BMI, education level and poverty ratio by respondance sequence number
 df <- merge(demo[,c("SEQN", "DMDEDUC2", "INDFMPIR")], 
             diabetes[,c("SEQN", "DIQ010")])
