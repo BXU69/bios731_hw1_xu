@@ -10,12 +10,13 @@ NHANES is a nationally representative cross-sectional survey conducted by the Ce
 
 For this analysis, we used the following NHANES components:
 
-Education level and income-to-poverty ratio from Demographics data (`data/DEMO_L.xpt`).
+1). Education level and income-to-poverty ratio from Demographics data (`data/DEMO_L.xpt`).
 
-Diabetes status from Diabetes Questionnaire data (`data/DIQ_L.xtp`).
+2). Diabetes status from Diabetes Questionnaire data (`data/DIQ_L.xtp`).
 
 ## Repository Structure
 
+```
 ├── data/                         # Raw data and saved cleaned dataset
 │   ├── DEMO_L.xpt                # Demographics data from NHANES (education, income-to-poverty ratio)
 │   ├── DIQ_L.xpt                 # Diabetes Questionnaire data from NHANES
@@ -29,19 +30,11 @@ Diabetes status from Diabetes Questionnaire data (`data/DIQ_L.xtp`).
 ├── README.md                     # Project overview and reproduction instructions
 ├── results/                      # Contain results exported by the analysis files
     ├── figure-1.png              # Visualization of analysis results
-
-## Reproduce Instruction
-
-To reproduce this analysis, follow these steps:
-
-1). Clone this repository to your local machine and open the RStudio project file (`.Rproj`).
-
-2). Install all required R packages listed in the Session Information section below.
-
-3). Open `analysis/final_report.Rmd` and knit the file to HTML format.
+```
 
 ## Session Information
 
+```
 R version 4.3.2 (2023-10-31)
 Platform: aarch64-apple-darwin20 (64-bit)
 Running under: macOS 15.6.1
@@ -72,6 +65,18 @@ loaded via a namespace (and not attached):
 [31] lifecycle_1.0.4   pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.4      rsconnect_1.2.0   glue_1.8.0       
 [37] systemfonts_1.2.3 xfun_0.41         tidyselect_1.2.1  rstudioapi_0.15.0 knitr_1.45        farver_2.1.1     
 [43] htmltools_0.5.8.1 rmarkdown_2.25    svglite_2.2.1     labeling_0.4.3    compiler_4.3.2
+```
+
+## Reproduce Instruction
+
+To reproduce this analysis, follow these steps:
+
+1). Clone this repository to your local machine and open the RStudio project file (`.Rproj`).
+
+2). Install all required R packages listed in the Session Information section above.
+
+3). Open `analysis/final_report.Rmd` and knit the file to HTML format.
+
 
 ## Collaboration Note
 
