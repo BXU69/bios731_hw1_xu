@@ -24,13 +24,11 @@ Diabetes status from Diabetes Questionnaire data (`data/DIQ_L.xtp`).
 │   ├── data_cleaning.R           # Data cleaning and preprocessing script
 │   ├── data_analysis.R           # Multinomial logistic regression model fitting
 │   ├── data_visualization.R      # Code for generating figures
-│   └── session_info.R            # Script to generate session information
 ├── analysis                  # Contain all the source R Markdown files that implement the analyses for the project
 │   ├── final_report.Rmd          # Main R Markdown file for the complete analysis report    
 ├── README.md                     # Project overview and reproduction instructions
 ├── results/                      # Contain results exported by the analysis files
     ├── figure-1.png              # Visualization of analysis results
-    └── sessionInfo.txt           # R session information including package versions
 
 ## Reproduce Instruction
 
@@ -38,13 +36,42 @@ To reproduce this analysis, follow these steps:
 
 1). Clone this repository to your local machine and open the RStudio project file (`.Rproj`).
 
-2). Install all required R packages listed in the `results/sessionInfo.txt` file.
+2). Install all required R packages listed in the Session Information section below.
 
 3). Open `analysis/final_report.Rmd` and knit the file to HTML format.
 
 ## Session Information
 
-The full output of `sessionInfo()` (including R version and package versions) used in this analysis is saved in `results/sessionInfo.txt`.
+R version 4.3.2 (2023-10-31)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS 15.6.1
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1   purrr_1.0.2     readr_2.1.5     tidyr_1.3.0     tibble_3.2.1   
+ [8] tidyverse_2.0.0 gridExtra_2.3   ggplot2_3.5.2   nnet_7.3-19     dplyr_1.1.4     here_1.0.1      haven_2.5.4    
+
+loaded via a namespace (and not attached):
+ [1] utf8_1.2.4        generics_0.1.3    class_7.3-22      xml2_1.3.6        stringi_1.8.3     hms_1.1.3        
+ [7] digest_0.6.37     magrittr_2.0.3    timechange_0.3.0  evaluate_0.23     grid_4.3.2        fastmap_1.1.1    
+[13] rprojroot_2.0.4   e1071_1.7-14      fansi_1.0.6       viridisLite_0.4.2 scales_1.3.0      textshaping_0.3.7
+[19] cli_3.6.4         rlang_1.1.5       munsell_0.5.0     withr_3.0.0       yaml_2.3.8        tools_4.3.2      
+[25] tzdb_0.4.0        colorspace_2.1-1  kableExtra_1.4.0  vctrs_0.6.5       R6_2.6.1          proxy_0.4-27     
+[31] lifecycle_1.0.4   pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.4      rsconnect_1.2.0   glue_1.8.0       
+[37] systemfonts_1.2.3 xfun_0.41         tidyselect_1.2.1  rstudioapi_0.15.0 knitr_1.45        farver_2.1.1     
+[43] htmltools_0.5.8.1 rmarkdown_2.25    svglite_2.2.1     labeling_0.4.3    compiler_4.3.2
 
 ## Collaboration Note
 
