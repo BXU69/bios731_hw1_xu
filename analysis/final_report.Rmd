@@ -1,0 +1,129 @@
+---
+title: "Examining Socioeconomic Factors Associated with Diabetes Using NHANES Data"
+author: "Baijia Xu"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_float: true
+params:
+  state: "nc"
+  download_raw_data: FALSE
+hitheme: tomorrow
+highlighter: highlight.js
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(here)
+
+knitr::opts_chunk$set(echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 9,
+  fig.height = 6,
+  fig.path = "../results/"
+)
+
+theme_set(theme_bw() + theme(legend.position = "bottom"))
+```
+
+## 1. Introduction
+
+Diabetes and socioeconomic disparities are major public health concerns in the United States. Education level is commonly used as a proxy for socioeconomic status, while income-to-poverty ratio is a key indicator for economic stability and health equity. Understanding the relationship between these socioeconomic factors and diabetes prevalence is essential for developing targeted prevention strategies.
+
+Research Question:
+
+How do education and income relate to diabetes prevalence? 
+
+We use data from the National Health and Nutrition Examination Survey (NHANES) to explore the relationship between diabetes status and socioeconomic factors using multinomial logistic regression. The outcome variable is diabetes status (no diabetes, borderline, diabetes), and the predictor variables include income-to-poverty ratio and education level.
+
+## 2. Dataset
+
+NHANES is a nationally representative cross-sectional survey conducted by the Centers for Disease Control and Prevention (CDC). It combines interviews, physical examinations, and laboratory measurements.
+
+For this analysis, we used the following NHANES components:
+
+Education level and income-to-poverty ratio from Demographics data (`/data/DEMO_L.xpt`).
+
+Diabetes status from Diabetes Questionnaire data (`/data/DIQ_L.xtp`).
+
+The analytic sample includes participants with non-missing diabetes, education and income-to-poverty ratio measurements.
+
+## 3. Data Cleaning
+
+Data cleaning and preprocessing were performed to prepare the analytic dataset.
+
+Key steps included:
+
+1). Reading XPT format data.
+
+2). Merge demographic information with diabetes by sequence number. 
+
+3). Remove all missing values. 
+
+4). Drop observations with DMDEDUC3 = 9, which is Unknown. 
+
+5). Define variable education: labeled as "<9th Grade" if DMDEDUC2=1, "9-11th Grade" if DMDEDUC2=2, "HS Graduate" if DMDEDUC2=3, "Some College" if DMDEDUC2=4, "College+" if DMDEDUC2=5. 
+
+6). Define variable diabetes_status: labeled as "Diabetes" if DIQ010=1, "No Diabetes" if DIQ010=2, "Borderline" if DIQ010=3. 
+
+The full data cleaning and processing code is sourced below.
+
+```{r}
+source(here("source", "data_cleaning.R")) 
+```
+
+
+## 4. Modeling
+
+### Multinomial Logistic Regression Model
+
+We fit a multinomial logistic regression model with diabetes as the outcome and education level and income-to-poverty ratio as predictors:
+
+$$
+\log\left(\frac{P(Y = j)}{P(Y = 0)}\right) = \beta_{0j} + \beta_{1j}X_{\text{edu}} + \beta_{2j} X_{\text{IPR}}
+$$
+
+where:
+
+$Y$ represents diabetes status with three categories: No Diabetes, Borderline, and Diabetes (reference),
+
+$$j$$ indexes the diabetes status categories (Diabates: j = 0, No Diabetes: j = 1, Borderline: j = 2),
+
+$\beta_{0j}0$ is the intercept for category j,
+
+$\beta_{1j}$is the coefficient for education level for category j,
+
+$\beta_{2j}$ is the coefficient for income-to-poverty ratio for category j.
+
+The model fitting results are presented below：
+
+```{r, include = FALSE}  
+source(here("source", "data_analysis.R"))
+```
+
+
+```{r}  
+summary(model) 
+```
+
+
+## 5. Visualization
+
+Visualizations is consist of two parts:
+
+1). Stacked bar chart illustrates the distribution of diabetes prevalence across different education levels.
+
+2). Density plot compares income-to-poverty ratio distributions among participants with different diabetes status.
+
+```{r}
+source(here("source", "data_visualization.R"))
+```
+
+Figure 1 (Left panel) shows the proportion of diabetes status by education level, revealing that higher educational attainment is associated with lower diabetes prevalence. Figure 2 (Right panel) displays the income-to-poverty ratio distributions across diabetes status categories, indicating that individuals without diabetes tend to have higher income-to-poverty ratios compared to those with diabetes or borderline diabetes.
+
+## 7. Results
+
+The multinomial logistic regression results indicate that both education level and income-to-poverty ratio are associated with diabetes status. Higher education levels show positive coefficients for the "No Diabetes" category compared to the reference group, with College+ having the largest coefficient (1.49). For the income-to-poverty ratio, higher values are positively associated with "No Diabetes" (coefficient = 0.041) but negatively associated with "Borderline" diabetes (coefficient = -0.006).
