@@ -45,9 +45,9 @@ NHANES is a nationally representative cross-sectional survey conducted by the Ce
 
 For this analysis, we used the following NHANES components:
 
-Education level and income-to-poverty ratio from Demographics data (`/data/DEMO_L.xpt`).
+Education level and income-to-poverty ratio from Demographics data (`data/DEMO_L.xpt`).
 
-Diabetes status from Diabetes Questionnaire data (`/data/DIQ_L.xtp`).
+Diabetes status from Diabetes Questionnaire data (`data/DIQ_L.xtp`).
 
 The analytic sample includes participants with non-missing diabetes, education and income-to-poverty ratio measurements.
 
@@ -118,7 +118,7 @@ Visualizations is consist of two parts:
 
 2). Density plot compares income-to-poverty ratio distributions among participants with different diabetes status.
 
-```{r}
+```{r, figure}
 source(here("source", "data_visualization.R"))
 ```
 
